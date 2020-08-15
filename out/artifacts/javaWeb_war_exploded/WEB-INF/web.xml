@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+
+    <welcome-file-list>
+            <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- 注册servlet 就像声明变量 -->
+    <servlet>
+        <!-- 类名 -->
+        <servlet-name>ProjectBate</servlet-name>
+        <!-- 所在的包 -->
+        <servlet-class>com.mzimu.service.EmpServlet</servlet-class>
+    </servlet>
+
+    <!-- 位置信息 让服务器知道servlet保存在哪个文件中 -->
+    <servlet-mapping>
+        <servlet-name>ProjectBate</servlet-name>
+        <!-- 访问的网址 -->
+        <url-pattern>/ProjectBate</url-pattern>
+    </servlet-mapping>
+</web-app>
+<!-- 核心配置文件 -->
