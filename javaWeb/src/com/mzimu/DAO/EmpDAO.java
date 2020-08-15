@@ -41,7 +41,7 @@ public class EmpDAO {
 
 
     //增加或者删除或者插入的操作
-    public void removeEmpBySql(String sql) throws SQLException {
+    public void empBySql(String sql) throws SQLException {
         Connection conn = GetConnection.getConn();
         Statement stat = conn.createStatement();
         stat.execute(sql);

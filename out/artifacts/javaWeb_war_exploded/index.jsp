@@ -10,11 +10,20 @@
       td{
         text-align: center;
         font-size: 18px;
-        width: 10%;
+        width: 11%;
         border: 1px solid black;
       }
       table{
         border: 1px solid black;
+      }
+
+      ul{
+        list-style-type: none;
+        overflow: hidden;
+      }
+      ul li{
+        margin-left: 10px;
+        float: left;
       }
 
     </style>
@@ -23,13 +32,28 @@
     <%
       request.setCharacterEncoding("UTF-8");
       response.setCharacterEncoding("UTF-8");
-      EmpServlet es = new EmpServlet();
       String id = request.getParameter("id");
       String name = request.getParameter("name");
       String job = request.getParameter("job");
-      session.setAttribute("empsList",es.findEntity(new Condition(id,name,job)));
+      session.setAttribute("empsList",EmpServlet.findEntity(new Condition(id,name,job)));
+
+      String js = request.getHeader("js_alert");
+      if(js!=null && js.isEmpty()){
+        response.getWriter().println(js);
+      }
+
+
     %>
-    <div>
+    <ul>
+      <li>
+        <a href="index.jsp">首页</a>
+      </li>
+      <li>
+        <a href="empSql_add.jsp">添加</a>
+      </li>
+    </ul>
+
+    <div id ="sql">
       <form action="/index.jsp" method="post">
           员工ID <input type="text" name="id">
           姓名 <input type="text" name="name">
@@ -42,30 +66,30 @@
           </select>
           <input type="submit" value="检查">
       </form>
-    </div>
-    <table>
-      <tr>
-        <td>id</td>
-        <td>name</td>
-        <td>age</td>
-        <td>job</td>
-        <td>hireDate</td>
-        <td>salart</td>
-        <td>deptName</td>
-        <td>操作</td>
-      </tr>
-      <c:forEach var="empsData" items="${sessionScope.empsList}">
+      <table>
         <tr>
-          <td>${empsData.id}</td>
-          <td>${empsData.name}</td>
-          <td>${empsData.age}</td>
-          <td>${empsData.job}</td>
-          <td>${empsData.sdf}</td>
-          <td>${empsData.salary}</td>
-          <td>${empsData.deptName}</td>
-          <td><a>删除</a></td>
+          <td>id</td>
+          <td>name</td>
+          <td>age</td>
+          <td>job</td>
+          <td>hireDate</td>
+          <td>salart</td>
+          <td>deptName</td>
+          <td>操作</td>
         </tr>
-      </c:forEach>
-    </table>
+        <c:forEach var="empsData" items="${sessionScope.empsList}">
+          <tr>
+            <td>${empsData.id}</td>
+            <td>${empsData.name}</td>
+            <td>${empsData.age}</td>
+            <td>${empsData.job}</td>
+            <td>${empsData.sdf}</td>
+            <td>${empsData.salary}</td>
+            <td>${empsData.deptName}</td>
+            <td><a href="/EmpRemoveServlet?remove=${empsData.id}" >删除</a></td>
+          </tr>
+        </c:forEach>
+      </table>
+    </div>
   </body>
 </html>

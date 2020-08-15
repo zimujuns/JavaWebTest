@@ -10,18 +10,35 @@
     </welcome-file-list>
 
     <!-- 注册servlet 就像声明变量 -->
+<!--    <servlet>-->
+<!--        &lt;!&ndash; 类名 &ndash;&gt;-->
+<!--        <servlet-name>ProjectBate</servlet-name>-->
+<!--        &lt;!&ndash; 所在的包 &ndash;&gt;-->
+<!--        <servlet-class>com.mzimu.service.EmpServlet</servlet-class>-->
+<!--    </servlet>-->
+    
+<!--    &lt;!&ndash; 位置信息 让服务器知道servlet保存在哪个文件中 &ndash;&gt;-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>ProjectBate</servlet-name>-->
+<!--        &lt;!&ndash; 访问的网址 &ndash;&gt;-->
+<!--        <url-pattern>/ProjectBate</url-pattern>-->
+<!--    </servlet-mapping>-->
+    
     <servlet>
-        <!-- 类名 -->
-        <servlet-name>ProjectBate</servlet-name>
-        <!-- 所在的包 -->
-        <servlet-class>com.mzimu.service.EmpServlet</servlet-class>
+        <servlet-name>EmpAddServlet</servlet-name>
+        <servlet-class>com.mzimu.service.EmpAddServlet</servlet-class>
     </servlet>
-
-    <!-- 位置信息 让服务器知道servlet保存在哪个文件中 -->
     <servlet-mapping>
-        <servlet-name>ProjectBate</servlet-name>
-        <!-- 访问的网址 -->
-        <url-pattern>/ProjectBate</url-pattern>
+        <servlet-name>EmpAddServlet</servlet-name>
+        <url-pattern>/EmpAddServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>EmpRemoveServlet</servlet-name>
+        <servlet-class>com.mzimu.service.EmpRemoveServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EmpRemoveServlet</servlet-name>
+        <url-pattern>/EmpRemoveServlet</url-pattern>
     </servlet-mapping>
 </web-app>
 <!-- 核心配置文件 -->

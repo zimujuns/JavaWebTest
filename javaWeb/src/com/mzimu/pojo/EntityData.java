@@ -1,8 +1,9 @@
 package com.mzimu.pojo;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class EntityData {
+public class EntityData implements Serializable {
     private String name,job,deptName;
     private Date sdf;
     private int id,age;
