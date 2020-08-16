@@ -4,10 +4,7 @@ import com.mzimu.pojo.EntityData;
 import com.mzimu.utils.GetConnection;
 
 import java.lang.reflect.Array;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 
@@ -47,6 +44,20 @@ public class EmpDAO {
         stat.execute(sql);
         stat.close();
         conn.close();
+    }
+
+    //获取表结构
+    public ArrayList<String> findCoum() throws SQLException {
+        ArrayList<String> list = new ArrayList<>();
+        Connection conn = GetConnection.getConn();
+        //与Statement 区别是  这个是个预编译的方法
+        PreparedStatement pst = conn.prepareStatement("select * from emps");
+        ResultSet rs = pst.executeQuery();
+        ResultSetMetaData rsmd =  rs.getMetaData();
+        for(int i=1;i<=rsmd.getColumnCount();i++){
+            list.add(rsmd.getColumnName(i));
+        }
+        return list;
     }
 
 }

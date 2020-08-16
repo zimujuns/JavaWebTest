@@ -1,6 +1,7 @@
 
 <%@ page import="com.mzimu.utils.Condition" %>
 <%@ page import="com.mzimu.service.EmpServlet" %>
+<%@ page import="com.mzimu.DAO.EmpDAO" %>
 <%@page contentType="text/html; ISO-8859-1" language="java" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -36,7 +37,7 @@
       String name = request.getParameter("name");
       String job = request.getParameter("job");
       session.setAttribute("empsList",EmpServlet.findEntity(new Condition(id,name,job)));
-
+      session.setAttribute("empsColumList", new EmpDAO().findCoum());
       String js = request.getHeader("js_alert");
       if(js!=null && js.isEmpty()){
         response.getWriter().println(js);
@@ -68,13 +69,9 @@
       </form>
       <table>
         <tr>
-          <td>id</td>
-          <td>name</td>
-          <td>age</td>
-          <td>job</td>
-          <td>hireDate</td>
-          <td>salart</td>
-          <td>deptName</td>
+          <c:forEach var="empsColum" items="${sessionScope.empsColumList}">
+            <td>${empsColum}</td>
+          </c:forEach>
           <td>操作</td>
         </tr>
         <c:forEach var="empsData" items="${sessionScope.empsList}">
