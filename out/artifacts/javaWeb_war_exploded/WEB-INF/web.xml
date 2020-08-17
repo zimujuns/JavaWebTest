@@ -40,5 +40,13 @@
         <servlet-name>EmpRemoveServlet</servlet-name>
         <url-pattern>/EmpRemoveServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>JobAddServlet</servlet-name>
+        <servlet-class>com.mzimu.service.JobAddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JobAddServlet</servlet-name>
+        <url-pattern>/JobAddServlet</url-pattern>
+    </servlet-mapping>
 </web-app>
 <!-- 核心配置文件 -->

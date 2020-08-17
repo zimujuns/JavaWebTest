@@ -8,14 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>添加失败</title>
+    <title>添加成功</title>
 </head>
 <body>
     <%
         response.setHeader("refresh","3;url=http://localhost:8080/index.jsp");
     %>
     <div style="display: flex">
-        <h5><i>添加失败!请通知管理员 3秒钟后自动返回首页 若未返回请手动返回</i></h5>
+        <h5><i>${sessionScope.msg}</i></h5>
         <a href="index.jsp">
             返回首页
         </a>

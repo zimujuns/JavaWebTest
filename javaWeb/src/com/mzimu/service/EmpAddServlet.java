@@ -21,13 +21,14 @@ public class EmpAddServlet extends HttpServlet {
         String age = req.getParameter("age");
         String job = req.getParameter("job");
         String salary = req.getParameter("salary");
-        String deptName = req.getParameter("deptName");
         String hireDate = req.getParameter("hireDate").replace("T"," ");
         try {
-            EmpServlet.addEntity(name,age,job,salary,deptName,hireDate);
-            resp.sendRedirect("http://localhost:8080/empSql_addYes.jsp");
+            EmpServlet.addEntity(name,age,job,salary,hireDate);
+            req.getSession().setAttribute("msg","添加成功! 3秒钟后自动返回首页 若未返回请手动返回");
         } catch (SQLException e) {
-            resp.sendRedirect("http://localhost:8080/empSql_addNo.jsp");
+            req.getSession().setAttribute("msg","添加失败!请通知管理员 3秒钟后自动返回首页 若未返回请手动返回");
+        }finally {
+            resp.sendRedirect("http://localhost:8080/empSql_addMsg.jsp");
         }
 
     }

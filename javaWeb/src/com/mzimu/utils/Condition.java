@@ -1,9 +1,16 @@
 package com.mzimu.utils;
 
+import com.mzimu.pojo.JobData;
+
 public class Condition {
     private String id;
     private String name;
     private String job;
+    private JobData jobData;
+
+    public Condition(JobData jobData) {
+        this.jobData = jobData;
+    }
 
     public Condition(String id, String name, String job) {
         this.id = id;
@@ -42,6 +49,18 @@ public class Condition {
             sb.append(getJob()+"'");
         }
         sb.append(";");
+        return sb.toString();
+    }
+
+    public String getJobWhere(){
+        String where = " && ";
+        StringBuffer sb = new StringBuffer();
+        if(jobData.getJob()!=null || jobData.getJob().isEmpty()){
+            sb.append(where).append("job = '").append(jobData.getJob()).append("'");
+        }
+        if(jobData.getDeptName()!=null||jobData.getDeptName().isEmpty()){
+            sb.append(where).append("deptName = '").append(jobData.getDeptName()).append("'");
+        }
         return sb.toString();
     }
 }

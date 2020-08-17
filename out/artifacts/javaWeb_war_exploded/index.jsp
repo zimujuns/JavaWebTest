@@ -37,7 +37,7 @@
       String name = request.getParameter("name");
       String job = request.getParameter("job");
       session.setAttribute("empsList",EmpServlet.findEntity(new Condition(id,name,job)));
-      session.setAttribute("empsColumList", new EmpDAO().findCoum());
+      session.setAttribute("empsColumList", new EmpDAO().empsCoum());
       String js = request.getHeader("js_alert");
       if(js!=null && js.isEmpty()){
         response.getWriter().println(js);
@@ -60,9 +60,9 @@
           姓名 <input type="text" name="name">
           工作
           <select name="job">
-            <option value="JavaWebk人员">JavaWebk人员</option>
-            <option value="JavaWeb人员">JavaWeb人员</option>
-            <option value="总管">总管</option>
+            <c:forEach var="job_Name" items="${sessionScope.empsJobList}">
+              <option value="${job_Name}">${job_Name}</option>
+            </c:forEach>
             <option value="" selected="true">所有</option>
           </select>
           <input type="submit" value="检查">
@@ -82,7 +82,6 @@
             <td>${empsData.job}</td>
             <td>${empsData.sdf}</td>
             <td>${empsData.salary}</td>
-            <td>${empsData.deptName}</td>
             <td><a href="/EmpRemoveServlet?remove=${empsData.id}" >删除</a></td>
           </tr>
         </c:forEach>
