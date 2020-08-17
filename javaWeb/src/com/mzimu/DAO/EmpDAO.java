@@ -1,5 +1,6 @@
 package com.mzimu.DAO;
 
+import com.mysql.cj.protocol.Resultset;
 import com.mzimu.pojo.EntityData;
 import com.mzimu.utils.GetConnection;
 
@@ -47,7 +48,7 @@ public class EmpDAO {
     }
 
     //获取表结构
-    public ArrayList<String> findCoum() throws SQLException {
+    public ArrayList<String> empsCoum() throws SQLException {
         ArrayList<String> list = new ArrayList<>();
         Connection conn = GetConnection.getConn();
         //与Statement 区别是  这个是个预编译的方法
@@ -60,4 +61,14 @@ public class EmpDAO {
         return list;
     }
 
+    public ArrayList<String> JobCoum() throws SQLException {
+        ArrayList<String> list = new ArrayList<>();
+        Connection conn = GetConnection.getConn();
+        PreparedStatement stat = conn.prepareStatement("select * from empsJob");
+        ResultSet rs = stat.executeQuery();
+        while (rs.next()){
+            list.add(rs.getString("job"));
+        }
+        return list;
+    }
 }

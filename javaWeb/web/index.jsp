@@ -37,7 +37,8 @@
       String name = request.getParameter("name");
       String job = request.getParameter("job");
       session.setAttribute("empsList",EmpServlet.findEntity(new Condition(id,name,job)));
-      session.setAttribute("empsColumList", new EmpDAO().findCoum());
+      session.setAttribute("empsColumList", new EmpDAO().empsCoum());
+      session.setAttribute("empsJobList",new EmpDAO().JobCoum());
       String js = request.getHeader("js_alert");
       if(js!=null && js.isEmpty()){
         response.getWriter().println(js);
@@ -60,6 +61,9 @@
           姓名 <input type="text" name="name">
           工作
           <select name="job">
+            <c:forEach var="job_Name" items="${}">
+
+            </c:forEach>
             <option value="JavaWebk人员">JavaWebk人员</option>
             <option value="JavaWeb人员">JavaWeb人员</option>
             <option value="总管">总管</option>
